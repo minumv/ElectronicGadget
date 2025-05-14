@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="container my-5">
+    <div class="row gx-4 gy-5"> <!-- Added gaps between cards -->
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let pdt of ProductsArray">
+        <form [formGroup]="ProductFormGroup" (ngSubmit)="OnSubmit(pdt.id)">
+            <div class="card h-100 shadow-sm product-card">
+                <img [src]="imageBaseUrl + pdt.productImagePath" class="card-img-top product-image" alt="Product Image" />
+                <div class="card-body d-flex flex-column justify-content-between text-center">
+                  <div>
+                    <h6 class="card-title text-truncate" title="{{ pdt.productName }}">{{ pdt.productName }}</h6>
+                    <p class="card-text fw-bold" style="color: #22313f">Price : ₹ {{ pdt.price }}</p>
+                  </div>
+                  <button type="submit" class="btn custom-cart-btn mt-3 w-100">Add to Cart</button>
+                </div>
+              </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer class="bg-dark text-white text-center py-4">
+  <p class="mb-0">&copy; 2025 GoCart. All rights reserved.</p>
+</footer>

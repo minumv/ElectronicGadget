@@ -1,0 +1,54 @@
+<section class="text-center p-6">
+    <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="backdrop-filter: blur(30px);">
+      <div class="card-body py-5 px-md-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5">Update Product</h2>
+            <form [formGroup]="ProductFormGroup" (ngSubmit)="OnSubmit()" enctype="multipart/form-data">
+              
+                <div *ngIf="previewImage" class="mb-3">
+                    <label>Current Image:</label><br />
+                    <img [src]="previewImage" alt="Product Image" width="150" height="150" />
+                  </div>
+  
+              <!-- Product Image -->
+              <div class="form-outline mb-4">
+                <input type="file" (change)="onImageSelected($event)" class="form-control" />
+                <label class="form-label">Product Image</label>
+              </div>
+
+              <!-- Product Name -->
+              <div class="form-outline mb-4">
+                <input type="text" formControlName="productName" class="form-control" />
+                <label class="form-label">Product Name</label>
+              </div>
+  
+              <!-- Price -->
+              <div class="form-outline mb-4">
+                <input type="number" formControlName="price" class="form-control" />
+                <label class="form-label">Price</label>
+              </div>
+  
+              <!-- Quantity -->
+              <div class="form-outline mb-4">
+                <input type="number" formControlName="stock" class="form-control" />
+                <label class="form-label">Stock</label>
+              </div>
+  
+              <!-- Description -->
+              <div class="form-outline mb-4">
+                <textarea formControlName="description" class="form-control"></textarea>
+                <label class="form-label">Description</label>
+              </div>
+  
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-success btn-block mb-4">Update</button>
+              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-block mb-4" (click)="confirmDelete()">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

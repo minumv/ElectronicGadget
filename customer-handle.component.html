@@ -1,0 +1,71 @@
+<!-- Section: Design Block -->
+<section class="text-center p-6">
+    
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+                   
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5">Customer Details</h2>
+            <form [formGroup] = "CustomerEditFormGroup" (ngSubmit) = "OnSubmit()">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <input type="text" id="form3Example1" formControlName="username" class="form-control" />
+                    <label class="form-label" for="form3Example1">Username</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <input type="text" id="form3Example2" formControlName="name" class="form-control" />
+                    <label class="form-label" for="form3Example2">Name</label>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Email input -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="email" id="form3Example3" formControlName="email" class="form-control" />
+                <label class="form-label" for="form3Example3">Email address</label>
+              </div>
+  
+              <!-- Password input -->
+              <!-- <div data-mdb-input-init class="form-outline mb-4">
+                <input type="password" id="form3Example4" formControlName="password" class="form-control" />
+                <label class="form-label" for="form3Example4">Password</label>
+              </div> -->
+  
+              <!-- Mobile Number -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" id="form3Example5" formControlName="mobileNo" class="form-control" />
+                <label class="form-label" for="form3Example5">Mobile Number</label>
+              </div>
+
+               <!-- Address -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <textarea type="" id="form3Example6" formControlName="address" class="form-control" ></textarea>
+                <label class="form-label" for="form3Example6">Address</label>
+              </div>
+  
+              <!-- Submit button -->
+              <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
+                Update
+              </button>
+              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-block mb-4" (click)="confirmDelete()">
+                Delete
+              </button>
+  
+              <!-- Register buttons -->
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->

@@ -1,0 +1,38 @@
+<div>    
+    <div>
+        <h4>Customer</h4>
+        <div *ngIf = "CustomerArray.length == 0" class="alert alert-info">
+          No customers found !!
+        </div>
+        <table class="table" *ngIf="CustomerArray.length>0">
+            <thead class="">
+              <tr class="bg-dark text-white">
+                <th scope="col">Name</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Address</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cus of CustomerArray">
+                <!-- <th scope="row">{{cus.name}}</th> -->
+                <td>{{cus.name}}</td>
+                <td>{{cus.username}}</td>
+                <td>{{cus.email}}</td>
+                <td>{{cus.mobileNo}}</td>
+                <td>{{cus.address}}</td>
+                <td>
+                  <div>
+                    <a [routerLink]="['/dashboard/customeredit', cus.id]" class="nav-link px-0 align-middle">
+                        <i class="fs-4 bi-three-dots"></i></a>
+                    </div>
+                </td>
+              </tr>             
+            </tbody>
+          </table>
+        
+    </div>
+    
+</div>

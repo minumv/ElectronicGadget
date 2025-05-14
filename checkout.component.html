@@ -1,0 +1,111 @@
+<div>
+    <a routerLink="/products" class="text-white px-3 py-2 d-inline-block rounded" style="background-color: #2c3e50;">
+      <i class="bi bi-house-door-fill"></i>
+    </a>
+</div>
+<div class="container my-4">
+    <div class="row  gx-4">
+      <!-- Left Side: Checkout Form -->
+        <div class="col-lg-7 mb-4">
+            <div class="bg-white p-4 rounded shadow-sm">
+                <h4 class="fw-bold mb-4">Checkout</h4>
+          
+                <!-- Address Display -->
+                <div class="mb-4">
+                    <h6 class="fw-semibold mb-2">Shipping Address</h6>
+                    <div class="border p-3 rounded">
+                  
+                      <!-- Show if no address exists -->
+                      <div *ngIf="customer?.address === 'null' ||customer?.address === ' ' ||customer?.address === null  ">
+                        <p class="mb-2 text-muted">Add your shipping address below:</p>
+                  
+                        <form [formGroup]="AddressForm" (ngSubmit)="addAddress()">
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="address"
+                              placeholder="Enter your address"
+                            />
+                            <button type="submit" class="btn btn-primary ms-2" style="background-color: #2c3e50;">Add</button>
+                          </div>
+                        </form>
+                      </div>
+                  
+                      <!-- Show if address exists -->
+                      <div *ngIf="isValidAddress(customer?.address)">
+                        <p class="mb-1 fw-bold">{{customer.name}}</p>
+                        <p class="mb-1">{{customer.address}}</p>
+                        <p class="mb-0">Phone: {{customer.mobileNo}}</p>
+                      </div>
+                      
+                    </div>
+                  </div>
+          
+                <!-- Payment Options -->
+                <div class="mb-4">
+                  <h6 class="fw-semibold mb-3">Select Payment Method</h6>
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="payment" id="card" checked [(ngModel)]="selectedPaymentMethod" value="card">
+                    <label class="form-check-label d-flex align-items-center" for="card">
+                       Credit / Debit Card
+                    </label>
+                  </div>
+          
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="payment" id="upi" [(ngModel)]="selectedPaymentMethod" value="upi">
+                    <label class="form-check-label d-flex align-items-center" for="upi">
+                      UPI
+                    </label>
+                  </div>
+          
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="payment" id="netbanking" [(ngModel)]="selectedPaymentMethod" value="netbanking">
+                    <label class="form-check-label d-flex align-items-center" for="netbanking">
+                       Net Banking
+                    </label>
+                  </div>
+          
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment" id="cod" [(ngModel)]="selectedPaymentMethod" value="cod">
+                    <label class="form-check-label d-flex align-items-center" for="cod">
+                       Cash on Delivery
+                    </label>
+                  </div>
+                </div>
+          
+                <!-- Proceed to Pay Button -->
+                <div class="text-end">
+                  <button class="btn btn-primary px-4" style="background-color: #2c3e50;" (click)="ProceedToPay()">Proceed to Pay</button>
+                </div>
+              </div>
+
+        </div>
+  
+      <!-- Right Side: Order Summary -->
+        <div class="col-lg-5">
+            <div class="bg-light p-4 rounded shadow-sm ms-md-3 mt-4 mt-md-0">
+                <h5 class="fw-semibold mb-3">Order Summary</h5>
+          
+                <div *ngFor="let item of CartProductArray" class="d-flex mb-3 border-bottom pb-2">
+                  <img [src]="imageBaseUrl + item.product.productImagePath" alt="Product" class="img-fluid me-3 rounded" style="width: 60px;">
+                  <div class="flex-grow-1">
+                    <p class="mb-1 fw-medium">{{item.product.productName}}</p>
+                    <small>Quantity: {{item.quantity}}</small>
+                  </div>
+                  <div>
+                    ₹{{item.product.price * item.quantity}}
+                  </div>
+                </div>
+          
+                <!-- Total -->
+                <div class="d-flex justify-content-between fw-bold mt-3 pt-2 border-top">
+                  <div>Total Amount:</div>
+                  <div>₹{{totalAmount}}</div>
+                </div>                
+              </div>
+             
+        </div>
+    </div>
+  </div>
+  

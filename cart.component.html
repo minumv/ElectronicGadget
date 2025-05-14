@@ -1,0 +1,60 @@
+<div class="p-4" style="background-color: #EEECEC; min-height: 100vh;">
+  <div class="container">
+    <h4 class="fw-bold mb-4">Shopping Cart</h4>
+
+    <div class="row" *ngIf="CartProductArray.length > 0; else emptyCart">
+      <!-- Cart Items Section -->
+      <div class="col-md-8">
+        <div class="bg-white p-4 rounded shadow-sm">
+          <div *ngFor="let pdt of CartProductArray" class="p-3 my-2 rounded border d-flex align-items-center justify-content-between">
+            <div style="width: 80px;">
+              <img [src]="imageBaseUrl+pdt.product.productImagePath" class="img-fluid rounded" alt="Product Image" />
+            </div>
+
+            <div class="flex-grow-1 mx-4">
+              <h6 class="mb-0 fw-bold">{{pdt.product.productName}}</h6>
+              <small class="text-muted">₹ {{pdt.product.price}}</small>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <button type="button" class="btn btn-outline-secondary btn-sm" (click)="CartDecrement(pdt.product.id)">-</button>
+              <span class="mx-2">{{pdt.quantity}}</span>
+              <button type="button" class="btn btn-outline-secondary btn-sm" (click)="CartIncrement(pdt.product.id)">+</button>
+            </div>
+
+            <div class="ms-3">
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="RemoveItem(pdt.product.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <button class="btn custom-cart-btn" routerLink="/products">← Back to Products</button>
+            <button class="btn btn-outline-danger" (click)="RemoveCart()">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Section -->
+      <div class="col-md-4">
+        <div class="p-4 rounded shadow-sm" style="background-color: #f5f5f5;">
+          <h5 class="mb-3">Summary</h5>
+          <h6>Total Items: <span class="fw-bold">{{totalItems}}</span></h6>
+          <h6>Total Amount: <span class="fw-bold">₹ {{totalAmount}}</span></h6>
+          <hr>
+          <button class="btn btn-success w-100 mt-2" routerLink="/checkout">Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Cart Section -->
+    <ng-template #emptyCart>
+      <div class="d-flex flex-column justify-content-center align-items-center" style="height: 60vh;">
+        <img src="assets/images/emptycart.png" alt="Cart is Empty" style="width: 180px; height: auto; margin-bottom: 1rem;">
+        <h5 class="text-muted">Your cart is empty</h5>
+        <button class="btn mt-3 text-white" routerLink="/products" style="background-color: #2c3e50;">Go Shopping</button>
+      </div>
+    </ng-template>
+  </div>
+</div>
